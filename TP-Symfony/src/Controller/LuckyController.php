@@ -10,14 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class LuckyController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
-     */
-    public function index(): Response
-    {
-        return $this->render('home.html.twig');
-    }
-
-    /**
      * @Route("/lucky", name="app_lucky_number")
      */
     public function luckyNumber(): Response
