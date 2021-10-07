@@ -1,0 +1,16 @@
+{% block body %}
+
+<header>
+    <nav>
+        <div>
+            <a href='{{ path('app_home') }}'>Home</a>
+            <a href='{{ path('app_lucky_number') }}'>Lucky Number</a>
+            <a href='{{ path('app_time') }}'>Time</a>
+            <a href='{{ path('app_color', {'couleur': 'red'}) }}'>Red</a>
+            <a href='{{ path('app_color', {'couleur': 'blue'}) }}'>Blue</a>
+            <a href='{{ path('app_ip') }}'>IP Adress</a>
+        </div>
+    </nav>
+</header>
+
+{% endblock %}

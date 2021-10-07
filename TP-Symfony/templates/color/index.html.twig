@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ColorController!{% endblock %}
+
+{% block body %}
+<p>La couleur choisie est <span style="color: {{ couleur }}">{{ couleur }}</span>.</p>
+{% if couleur == 'red' %} <p style="color: red">Attention risque de virus</p>{% endif %}
+{% endblock %}
