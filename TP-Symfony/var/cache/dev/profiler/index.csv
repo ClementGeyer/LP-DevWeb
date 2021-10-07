@@ -1,3 +1,7 @@
 c46759,127.0.0.1,GET,http://127.0.0.1:8000/,1633590206,,200
 6c5b50,127.0.0.1,GET,http://127.0.0.1:8000/assets/bootstrap/js/bootstrap.min.js,1633590207,0f4d1a,404
 0f4d1a,127.0.0.1,GET,http://127.0.0.1:8000/assets/bootstrap/js/bootstrap.min.js,1633590207,,404
+cb9b18,127.0.0.1,GET,http://127.0.0.1:8000/,1633593660,,200
+0b1fb4,127.0.0.1,GET,http://127.0.0.1:8000/assets/bootstrap/js/bootstrap.min.js,1633593660,ab6ceb,404
+ab6ceb,127.0.0.1,GET,http://127.0.0.1:8000/assets/bootstrap/js/bootstrap.min.js,1633593660,,404
+3a3c26,127.0.0.1,GET,http://127.0.0.1:8000/,1633593808,,200

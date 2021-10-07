@@ -114,9 +114,8 @@ class __TwigTemplate_4b4e18b26529ef981cb96055c6f5961d1f0aa0fb43bd31cba71d74f3d6e
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 10
-        echo "            ";
-        // line 11
-        echo "        ";
+        echo "            <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">
+        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -136,7 +135,7 @@ class __TwigTemplate_4b4e18b26529ef981cb96055c6f5961d1f0aa0fb43bd31cba71d74f3d6e
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
         // line 14
-        echo "            <script src='assets/bootstrap/js/bootstrap.min.js'></script>
+        echo "            <script src=\"js/bootstrap.min.js\"></script>
         ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -176,7 +175,7 @@ class __TwigTemplate_4b4e18b26529ef981cb96055c6f5961d1f0aa0fb43bd31cba71d74f3d6e
 
     public function getDebugInfo()
     {
-        return array (  150 => 19,  139 => 14,  129 => 13,  119 => 11,  117 => 10,  107 => 9,  88 => 6,  76 => 20,  74 => 19,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 9,  54 => 6,  47 => 1,);
+        return array (  149 => 19,  138 => 14,  128 => 13,  117 => 10,  107 => 9,  88 => 6,  76 => 20,  74 => 19,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 9,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -190,11 +189,11 @@ class __TwigTemplate_4b4e18b26529ef981cb96055c6f5961d1f0aa0fb43bd31cba71d74f3d6e
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#<link rel=\"stylesheet\" href=\"assets/bootstrap/styles/bootstrap.min.css\">#}
+            <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">
         {% endblock %}
 
         {% block javascripts %}
-            <script src='assets/bootstrap/js/bootstrap.min.js'></script>
+            <script src=\"js/bootstrap.min.js\"></script>
         {% endblock %}
     </head>
     <body>
@@ -202,6 +201,6 @@ class __TwigTemplate_4b4e18b26529ef981cb96055c6f5961d1f0aa0fb43bd31cba71d74f3d6e
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "/Users/clement/Desktop/LP/S5/LP-DevWeb/Symfony/TP/templates/base.html.twig");
+", "base.html.twig", "/Users/clement/Desktop/LP/S5/LP-DevWeb/TP-Symfony/templates/base.html.twig");
     }
 }
