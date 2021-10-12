@@ -15,7 +15,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     'app_color' => [['couleur'], ['_controller' => 'App\\Controller\\ColorController::index'], [], [['variable', '/', '[^/]++', 'couleur', true], ['text', '/color']], [], []],
-    'app_home' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/']], [], []],
+    'app_home' => [[], ['_controller' => 'App\\Controller\\DefaultController::home'], [], [['text', '/']], [], []],
     'app_create_category' => [[], ['_controller' => 'App\\Controller\\DefaultController::createCategory'], [], [['text', '/create-category']], [], []],
     'app_create_post' => [[], ['_controller' => 'App\\Controller\\DefaultController::createPost'], [], [['text', '/create-post']], [], []],
     'app_view_post' => [[], ['_controller' => 'App\\Controller\\DefaultController::viewPosts'], [], [['text', '/post/view']], [], []],
