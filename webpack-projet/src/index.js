@@ -1,11 +1,5 @@
-import _ from 'lodash';
+require('jquery');
 
-function component() {
-  const element = document.createElement('div');
-
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
+$(function() {
+  $("h1").after("Jquery fonctionne");
+})
