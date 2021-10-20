@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Galerie</h1>
+    <div class="d-flex justify-content-center flex-wrap">
+        {% for i in 0..10 %}
+            <img class="m-5" loading="lazy" src="https://picsum.photos/300/300"/>
+        {% endfor %} 
+    </div>
+{% endblock %}
+

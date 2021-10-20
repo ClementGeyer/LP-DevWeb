@@ -14,6 +14,7 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\DefaultController::home'], null, null, null, false, false, null]],
+        '/galery' => [[['_route' => 'app_galery', '_controller' => 'App\\Controller\\DefaultController::galery'], null, null, null, false, false, null]],
         '/ip' => [[['_route' => 'app_ip', '_controller' => 'App\\Controller\\IPController::index'], null, null, null, false, false, null]],
         '/lucky' => [[['_route' => 'app_lucky_number', '_controller' => 'App\\Controller\\LuckyController::luckyNumber'], null, null, null, false, false, null]],
         '/time/now' => [[['_route' => 'app_time', '_controller' => 'App\\Controller\\LuckyController::timeNow'], null, null, null, false, false, null]],

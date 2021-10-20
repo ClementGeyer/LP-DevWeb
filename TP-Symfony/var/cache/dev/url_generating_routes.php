@@ -16,6 +16,7 @@ return [
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     'app_color' => [['couleur'], ['_controller' => 'App\\Controller\\ColorController::index'], [], [['variable', '/', '[^/]++', 'couleur', true], ['text', '/color']], [], []],
     'app_home' => [[], ['_controller' => 'App\\Controller\\DefaultController::home'], [], [['text', '/']], [], []],
+    'app_galery' => [[], ['_controller' => 'App\\Controller\\DefaultController::galery'], [], [['text', '/galery']], [], []],
     'app_ip' => [[], ['_controller' => 'App\\Controller\\IPController::index'], [], [['text', '/ip']], [], []],
     'app_lucky_number' => [[], ['_controller' => 'App\\Controller\\LuckyController::luckyNumber'], [], [['text', '/lucky']], [], []],
     'app_time' => [[], ['_controller' => 'App\\Controller\\LuckyController::timeNow'], [], [['text', '/time/now']], [], []],

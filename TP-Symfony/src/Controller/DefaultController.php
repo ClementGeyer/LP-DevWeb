@@ -17,4 +17,12 @@ class DefaultController extends AbstractController
         return $this->render('home.html.twig');
     }
 
+    /**
+     * @Route("/galery", name="app_galery")
+     */
+    public function galery(): Response
+    {
+        return $this->render('galery.html.twig');
+    }
+
 }
