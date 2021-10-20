@@ -17,5 +17,12 @@
     <body>
         {{ include("menu.html.twig") }}
         {% block body %}{% endblock %}
+
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('message') %}
+            <div class="flash-message">
+                {{ message }}
+            </div>
+        {% endfor %}
     </body>
 </html>

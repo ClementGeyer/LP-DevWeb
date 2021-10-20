@@ -5,7 +5,7 @@
         <div>
             <h1>Posts</h1>
             {% for post in posts %}
-                <p>{{post.title}}</p>
+                <p><b>{{post.title}}</b> -> {{post.category.title}}</p>
                 <hr/>
             {% endfor %}
         </div>
