@@ -1,0 +1,32 @@
+.card{
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 1rem;
+    text-align: center;
+    background-color: white;
+    width: 22%;
+}
+
+.card > img{
+    width: 55%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: auto;
+}
+
+body{
+    background-color: grey;
+}
+
+body > h1{
+    text-align: center;
+    color: white;
+    font-size: 32px;
+}
