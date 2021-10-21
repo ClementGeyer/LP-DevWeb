@@ -1,16 +1,37 @@
+.psg{ background-image: url('../src/images/psg.jpeg'); }
+.ol{ 
+    background-image: url('../src/images/ol.jpeg');
+    background-size: 180px; 
+}
+.rma{ background-image: url('../src/images/rma.jpeg'); }
+.napoli{ background-image: url('../src/images/napoli.jpeg'); }
+.mutd{ background-image: url('../src/images/mutd.jpeg'); }
+.chelsea{ background-image: url('../src/images/chelsea.jpeg'); }
+
 .card{
     border: 1px solid black;
     border-radius: 15px;
     margin: 1rem;
     text-align: center;
-    background-color: white;
     width: 22%;
+    height: 10rem;
+    background-color: white;
+    position: relative;
+    background-size: 120px;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: fill;
+}
+
+.card-back{
+    background: purple !important;
 }
 
 .card > img{
     width: 55%;
     height: 100%;
     object-fit: cover;
+    
 }
 
 .card-container{
