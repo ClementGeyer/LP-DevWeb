@@ -38,35 +38,33 @@ function getRandomInt(max) {
 
 function showCard(clickedTeam){
     const teamContainer = document.getElementsByClassName("card");
-    console.log(clickedTeam)
-    teamContainer[clickedTeam.id].classList.remove("card-back");
-    cardsShown.push(clickedTeam.id);
-    if(cardsShown.length === 2){
-        if(teamContainer[cardsShown[0]].classList[1] === teamContainer[cardsShown[1]].classList[1]){
-            teamContainer[cardsShown[0]].classList.add("match");
-            teamContainer[cardsShown[1]].classList.add("match");
+    if(cardsShown.length < 2){
+        teamContainer[clickedTeam.id].classList.remove("card-back");
+        cardsShown.push(clickedTeam.id);
+        if(cardsShown.length === 2){
+            if(teamContainer[cardsShown[0]].classList[1] === teamContainer[cardsShown[1]].classList[1]){
+                teamContainer[cardsShown[0]].classList.add("match");
+                teamContainer[cardsShown[1]].classList.add("match");
+            }
         }
-    }
-    setTimeout(() => {
-        console.log(cardsShown)
-        if(cardsShown.length === 2){ 
-            [...teamContainer].forEach((team) => {
-                console.log(team.classList[2])
-                if(team.classList[2] !== "match"){
-                    team.classList.add("card-back");
-                }
-            })
-            cardsShown = [];
-        }
-    },1000);
-    var count = 0;
-    [...teamContainer].forEach((team) => {
-        if(team.classList[2] === "match"){
-            count++;
-            console.log(count);
-        }
-    })
-    if(count === 12){ win() }
+        setTimeout(() => {
+            if(cardsShown.length === 2){ 
+                [...teamContainer].forEach((team) => {
+                    if(team.classList[2] !== "match"){
+                        team.classList.add("card-back");
+                    }
+                })
+                cardsShown = [];
+            }
+        },1000);
+        var count = 0;
+        [...teamContainer].forEach((team) => {
+            if(team.classList[2] === "match"){
+                count++;
+            }
+        })
+        if(count === 12){ win() }
+    } 
 }
 
 function win(){
