@@ -22,13 +22,13 @@ class UploadType extends AbstractType
             ->add('description', TextType::class, [
                 'label' => 'Description: '
             ])
-            ->add('type', ChoiceType::class, [
+            /*->add('type', ChoiceType::class, [
                 'choices'  => [
                     'Vidéo' => 1,
                     'Photo' => 2,
                     'Document' => 3,
                 ],
-            ])
+            ])*/
             ->add('file', FileType::class, [
                 'label' => 'Votre fichier: ',
                 'mapped' => false,

@@ -6,16 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User
 {
     /**
      * @ORM\Id
@@ -35,28 +30,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
-     * @ORM\OneToMany(targetEntity=Work::class, mappedBy="User", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Work::class, mappedBy="owner", orphanRemoval=true)
      */
     private $works;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserLikedPosts::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $userLikedPosts;
 
     public function __construct()
     {
         $this->works = new ArrayCollection();
+        $this->userLikedPosts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,50 +108,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-     /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function addRole(string $role): void
-    {
-        $this->roles[] = $role;
-    }
-
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
     /**
      * @return Collection|Work[]
      */
@@ -168,7 +120,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->works->contains($work)) {
             $this->works[] = $work;
-            $work->setUser($this);
+            $work->setOwner($this);
         }
 
         return $this;
@@ -178,8 +130,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->works->removeElement($work)) {
             // set the owning side to null (unless already changed)
-            if ($work->getUser() === $this) {
-                $work->setUser(null);
+            if ($work->getOwner() === $this) {
+                $work->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserLikedPosts[]
+     */
+    public function getUserLikedPosts(): Collection
+    {
+        return $this->userLikedPosts;
+    }
+
+    public function addUserLikedPost(UserLikedPosts $userLikedPost): self
+    {
+        if (!$this->userLikedPosts->contains($userLikedPost)) {
+            $this->userLikedPosts[] = $userLikedPost;
+            $userLikedPost->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserLikedPost(UserLikedPosts $userLikedPost): self
+    {
+        if ($this->userLikedPosts->removeElement($userLikedPost)) {
+            // set the owning side to null (unless already changed)
+            if ($userLikedPost->getUser() === $this) {
+                $userLikedPost->setUser(null);
             }
         }
 

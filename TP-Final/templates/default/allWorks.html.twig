@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos travaux{% endblock %}
+
+{% block body %}
+    {% for work in allWorks %}
+        <p>{{ work.title }} {{ work.likeCount }}</p>
+        {% set found = false %}
+        {% for like in likedPosts %}
+            {% if like.post.id == work.id %}
+                {% set found = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% if found %}
+            <a class="disabled" id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like</a>
+        {% else %}
+            <a id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

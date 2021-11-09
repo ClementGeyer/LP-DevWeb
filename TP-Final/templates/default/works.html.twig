@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos travaux{% endblock %}
+
+{% block body %}
+    {% for work in works %}
+        <p>{{ work.title }}</p>
+    {% endfor %}
+{% endblock %}
