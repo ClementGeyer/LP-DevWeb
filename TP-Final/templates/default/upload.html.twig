@@ -3,8 +3,30 @@
 {% block title %}Déposer un travail{% endblock %}
 
 {% block body %}
-<div>
+
+<h1 class="h3 mb-3 mt-5 text-center font-weight-normal">Déposer un travail</h1>
+
+<div class="border border-1 col-5 d-flex m-auto flex-column pt-5 pb-5 bg-dark">
     {{ form_start(form) }}
+        <div class="col-8 d-flex flex-column align-items-center m-auto mb-3">
+            <label class="text-white">Titre</label>
+            {{ form_row(form.title) }}
+        </div>
+        <div class="col-8 d-flex flex-column align-items-center m-auto mb-3">
+            <label class="text-white">Description</label>
+            {{ form_row(form.description) }}
+        </div>
+        <div class="col-12 d-flex flex-column align-items-center m-auto mb-3">
+            <label class="text-white">Catégorie</label>
+            {{ form_row(form.category) }}
+        </div>
+        <div class="m-5">
+            {{ form_row(form.file) }}
+        </div>
+
+        <div class="col-12 d-flex">
+            <button type="submit" class="btn btn-lg btn-primary m-auto">Valider</button>
+        </div>
     {{ form_end(form) }}
 </div>
 {% endblock %}

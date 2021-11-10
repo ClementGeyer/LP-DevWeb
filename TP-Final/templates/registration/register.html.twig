@@ -1,17 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<a href='{{ path('app_login') }}' class="btn btn-lg btn-dark m-5">
+    Se connecter
+</a>
 
+<h1 class="h3 mb-3 mt-3 text-center font-weight-normal">S'inscrire</h1>
+
+<div class="border border-1 col-5 d-flex m-auto flex-column pt-5 pb-5 bg-dark">
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="col-8 d-flex flex-column align-items-center m-auto mb-3">
+            <label class="text-white">Nom d'utilisateur</label>
+            {{ form_row(registrationForm.username) }}
+        </div>
+        <div class="col-8 d-flex flex-column align-items-center m-auto mb-3">
+            <label class="text-white">Mot de passe</label>
+            {{ form_row(registrationForm.plainPassword) }}
+        </div>
+        <div class="col-5 d-flex justify-content-around m-auto mb-3"> 
+            <label class="text-white">Accepter les conditions:</label>
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
 
-        <button type="submit" class="btn">Register</button>
+        <div class="col-12 d-flex">
+            <button type="submit" class="btn btn-lg btn-primary m-auto">S'inscrire</button>
+        </div>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}

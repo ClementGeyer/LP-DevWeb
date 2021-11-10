@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Travail{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-around mt-5">
+        <div class="col-7 border border-1 bg-dark">
+            <p class="text-white text-center mt-3 fw-bold fs-3">{{ work.title }} - {{ work.category.name }}</p>
+            <p class="text-white text-center mt-3">{{ work.description }}</p>
+            <div class="d-flex justify-content-center m-5">
+                <embed src={{ work.file }} type="application/pdf"/>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -18,22 +18,23 @@ class UploadType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre: '
+                'label' => false
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description: '
+                'label' => false
             ])
             ->add('category', EntityType::class, [
                 'class'  => Category::class,
                 'choice_label' => 'name',
+                'label' => false
             ])
             ->add('file', FileType::class, [
-                'label' => 'Votre fichier: ',
+                'label' => false,
                 'mapped' => false,
+                'attr' => [
+                    'class' => "text-white"
+                ]
             ])
-            ->add('submit', SubmitType::class, array(
-                'label' => "Valider"
-            ));
         ;
     }
 

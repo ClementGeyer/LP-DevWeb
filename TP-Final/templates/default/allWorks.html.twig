@@ -1,21 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vos travaux{% endblock %}
+{% block title %}Tous les travaux{% endblock %}
 
 {% block body %}
-    {% for work in allWorks %}
-        <p>{{ work.title }} {{ work.likeCount }}</p>
-        {% set found = false %}
-        {% for like in likedPosts %}
-            {% if like.post.id == work.id %}
-                {% set found = true %}
-            {% endif %}
-        {% endfor %}
+    <div class="col-4 d-flex align-items-center mt-5 border border-1 bg-dark m-auto">
+        <input class="m-3" id="searchBar" type="text" placeholder="Rechercher..."/>
+    </div>
 
-        {% if found %}
-            <a class="disabled" id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like</a>
-        {% else %}
-            <a id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like</a>
-        {% endif %}
+    <div class="d-flex justify-content-around mt-5">
+    {% for work in allWorks %}
+        <div class="col-3 border border-1 bg-dark">
+            <p class="text-white text-center mt-3 fw-bold fs-3">{{ work.title }} - {{ work.category.name }}</p>
+            <div class="col-12 d-flex justify-content-center">
+                <a href="{{ path('app_work', {'id': work.id}) }}" class="btn btn-lg btn-dark mb-3 c-red">Acceder à la ressource</a>
+            </div>
+            {% set found = false %}
+            {% for like in likedPosts %}
+                {% if like.post.id == work.id %}
+                    {% set found = true %}
+                {% endif %}
+            {% endfor %}
+
+            <div class="col-12 d-flex justify-content-center">
+            {% if found %}
+                <a class="btn btn-lg btn-secondary mb-3 disabled" id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like ( {{ work.likeCount }} )</a>
+            {% else %}
+                <a class="btn btn-lg btn-success mb-3" id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like ( {{ work.likeCount }} )</a>
+            {% endif %}
+            </div>
+        </div>
     {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/searchBar.js") }}" defer></script>
 {% endblock %}

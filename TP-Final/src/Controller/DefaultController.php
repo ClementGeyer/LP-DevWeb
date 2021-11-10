@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Entity\Work;
 use App\Entity\UserLikedPosts;
 use App\Form\UploadType;
+use App\Form\UserType;
 use App\Service\ServiceWork;
 
 class DefaultController extends AbstractController
@@ -19,11 +20,31 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 1]);
+        $user = $this->getUser();
 
         return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
-            'users' => $users,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/modidier", name="app_modify_user")
+     */
+    public function modifyUser(Request $request, ServiceWork $serviceWork): Response
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $serviceWork->save($user);
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('default/modifyUser.html.twig', [
+            'user' => $user,
+            'form' => $form->createView()
         ]);
     }
 
@@ -41,13 +62,25 @@ class DefaultController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $work->setFile($request->files->get('upload')['file']);
             $work->setOwner($user);
+            $work->setLikeCount(0);
 
             $serviceWork->save($work);
+            return $this->redirectToRoute('app_works');
         }
         
 
         return $this->render('default/upload.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/work/{id}", name="app_work")
+     */
+    public function displayWork(Work $work): Response
+    {
+        return $this->render('default/work.html.twig', [
+            'work' => $work,
         ]);
     }
 

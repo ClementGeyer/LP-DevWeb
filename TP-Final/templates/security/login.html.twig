@@ -14,18 +14,18 @@
         </div>
     {% endif %}
 
-    <a href='{{ path('app_register') }}' class="btn btn-lg btn-secondary m-5">
+    <a href='{{ path('app_register') }}' class="btn btn-lg btn-dark m-5">
         S'inscrire
     </a>
 
     <h1 class="h3 mb-3 mt-3 text-center font-weight-normal">Connectez-vous !</h1>
-    <div class="border border-1 col-5 d-flex m-auto flex-column pt-5 pb-5">
+    <div class="border border-1 col-5 d-flex m-auto flex-column pt-5 pb-5 bg-dark">
         <div class="col-8 d-flex flex-column align-items-center m-auto mb-3">
-            <label for="inputUsername">Nom d'utilisateur</label>
+            <label class="text-white" for="inputUsername">Nom d'utilisateur</label>
             <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
         </div>
         <div class="col-8 d-flex flex-column align-items-center m-auto mb-3">
-            <label for="inputPassword">Mot de passe</label>
+            <label class="text-white" for="inputPassword">Mot de passe</label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
         </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
