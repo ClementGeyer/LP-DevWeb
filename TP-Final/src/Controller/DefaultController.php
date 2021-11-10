@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Entity\Work;
-use App\Entity\FileType;
 use App\Entity\UserLikedPosts;
 use App\Form\UploadType;
 use App\Service\ServiceWork;
