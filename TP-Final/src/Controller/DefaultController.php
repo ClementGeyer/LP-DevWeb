@@ -99,16 +99,28 @@ class DefaultController extends AbstractController
     /**
      * @Route("/all-works", name="app_all_works")
      */
-    public function displayAllWorks(): Response
+    public function displayAllWorks(Request $request): Response
     {
         $allWorks = $this->getDoctrine()->getRepository(Work::class)->findAll();
         $user = $this->getUser();
         $likedPosts = $this->getDoctrine()->getRepository(UserLikedPosts::class)->findBy(['user' => $user]);
+        $filtre = $request->query->get('filtre');
 
         return $this->render('default/allWorks.html.twig', [
             'allWorks' => $allWorks,
             'likedPosts' => $likedPosts,
+            'filtre' => $filtre
         ]);
+    }
+
+    /**
+     * @Route("/all-works/find", name="app_all_foundWorks")
+     */
+    public function displayFoundWorks(Request $request): Response
+    {
+        $filtre = json_decode($request->getContent(), true);
+
+        return $this->redirectToRoute('app_all_works', ['filtre' => $filtre]);
     }
 
     /**

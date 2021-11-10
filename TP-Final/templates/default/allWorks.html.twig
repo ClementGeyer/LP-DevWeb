@@ -9,6 +9,7 @@
 
     <div class="d-flex justify-content-around mt-5">
     {% for work in allWorks %}
+        {% if not filtre %}
         <div class="col-3 border border-1 bg-dark">
             <p class="text-white text-center mt-3 fw-bold fs-3">{{ work.title }} - {{ work.category.name }}</p>
             <div class="col-12 d-flex justify-content-center">
@@ -29,10 +30,35 @@
             {% endif %}
             </div>
         </div>
+        {% else %}
+            {% if work.title == filtre %}
+                <div class="col-3 border border-1 bg-dark">
+                    <p class="text-white text-center mt-3 fw-bold fs-3">{{ work.title }} - {{ work.category.name }}</p>
+                    <div class="col-12 d-flex justify-content-center">
+                        <a href="{{ path('app_work', {'id': work.id}) }}" class="btn btn-lg btn-dark mb-3 c-red">Acceder à la ressource</a>
+                    </div>
+                    {% set found = false %}
+                    {% for like in likedPosts %}
+                        {% if like.post.id == work.id %}
+                            {% set found = true %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="col-12 d-flex justify-content-center">
+                    {% if found %}
+                        <a class="btn btn-lg btn-secondary mb-3 disabled" id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like ( {{ work.likeCount }} )</a>
+                    {% else %}
+                        <a class="btn btn-lg btn-success mb-3" id="{{work.id}}" href='{{ path('app_like_post', {'id': work.id}) }}'>Like ( {{ work.likeCount }} )</a>
+                    {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
     {% endfor %}
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset("js/searchBar.js") }}" defer></script>
+    <script>var URLSearchBar = "{{path('app_all_foundWorks')}}";</script>
 {% endblock %}

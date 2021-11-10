@@ -46,7 +46,7 @@ class Work
     private $owner;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="id")
+     * @ORM\ManyToOne(targetEntity=Category::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
