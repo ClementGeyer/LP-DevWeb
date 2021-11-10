@@ -15,7 +15,9 @@
         {% endblock %}
     </head>
     <body>
-        {{ include("menu.html.twig") }} 
+        {% if app.user is not null %}
+            {{ include("menu.html.twig") }} 
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

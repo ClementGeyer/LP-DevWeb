@@ -3,13 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Work;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UploadType extends AbstractType
 {
@@ -22,13 +23,10 @@ class UploadType extends AbstractType
             ->add('description', TextType::class, [
                 'label' => 'Description: '
             ])
-            /*->add('type', ChoiceType::class, [
-                'choices'  => [
-                    'Vidéo' => 1,
-                    'Photo' => 2,
-                    'Document' => 3,
-                ],
-            ])*/
+            ->add('category', EntityType::class, [
+                'class'  => Category::class,
+                'choice_label' => 'name',
+            ])
             ->add('file', FileType::class, [
                 'label' => 'Votre fichier: ',
                 'mapped' => false,

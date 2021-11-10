@@ -52,6 +52,12 @@ class Work
     private $owner;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="id")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
      * @ORM\OneToMany(targetEntity=UserLikedPosts::class, mappedBy="post", orphanRemoval=true)
      */
     private $userLikedPosts;
@@ -110,6 +116,18 @@ class Work
     public function addLikeCount()
     {
         $this->likeCount = $this->likeCount + 1;
+
+        return $this;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
 
         return $this;
     }

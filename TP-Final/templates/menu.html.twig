@@ -7,6 +7,9 @@
             <a href='{{ path('app_upload') }}'>Déposer un travail</a>
             <a href='{{ path('app_works') }}'>Voir vos travaux</a>
             <a href='{{ path('app_all_works') }}'>Voir tous les travaux</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href='{{ path('app_admin_create') }}'>ADMIN-Créer catégorie</a>
+            {% endif %}
         </div>
     </nav>
 </header>
