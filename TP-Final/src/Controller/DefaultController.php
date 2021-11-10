@@ -34,20 +34,16 @@ class DefaultController extends AbstractController
     public function upload(Request $request, ServiceWork $serviceWork): Response
     {
         $work = new Work();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 1]);
-        $type = $this->getDoctrine()->getRepository(FileType::class)->findOneBy(['id' => 2]);
+        $user = $this->getUser();
 
         $form = $this->createForm(UploadType::class, $work);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
             $work->setFile($request->files->get('upload')['file']);
-            $work->setType($type);
             $work->setOwner($user);
 
             $serviceWork->save($work);
-            //$work->setType($request->request->get('upload')['type']);
-            // Sauvegarder work
         }
         
 
@@ -61,7 +57,7 @@ class DefaultController extends AbstractController
      */
     public function displayWorks(): Response
     {
-        $userWorks = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 1])->getWorks();
+        $userWorks = $this->getUser()->getWorks();
 
         return $this->render('default/works.html.twig', [
             'works' => $userWorks,
@@ -74,7 +70,7 @@ class DefaultController extends AbstractController
     public function displayAllWorks(): Response
     {
         $allWorks = $this->getDoctrine()->getRepository(Work::class)->findAll();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 1]);
+        $user = $this->getUser();
         $likedPosts = $this->getDoctrine()->getRepository(UserLikedPosts::class)->findBy(['user' => $user]);
 
         return $this->render('default/allWorks.html.twig', [
@@ -88,7 +84,7 @@ class DefaultController extends AbstractController
      */
     public function likePost(Work $work, ServiceWork $serviceWork)
     {
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 1]);
+        $user = $this->getUser();
 
         $work->addLikeCount();
 

@@ -40,12 +40,6 @@ class Work
     private $likeCount;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FileType::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $type;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="works")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -135,18 +129,6 @@ class Work
     public function setFile($file): self
     {
         $this->file = $file;
-
-        return $this;
-    }
-
-    public function getType(): ?FileType
-    {
-        return $this->type;
-    }
-
-    public function setType(FileType $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
