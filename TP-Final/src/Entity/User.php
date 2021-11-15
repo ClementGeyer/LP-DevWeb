@@ -230,4 +230,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function toggleRole(string $role): void
+    {
+        $index = array_search($role, $this->roles);
+        
+        if($index === false){            
+            $this->addRole($role);
+        }else{
+            array_splice($this->roles, $index, 1);
+            $this->roles;
+        }                
+    }
+
+    public function hasRole($searchedRole): bool
+    {
+        foreach ($this->roles as $role){
+            if($role === $searchedRole){
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

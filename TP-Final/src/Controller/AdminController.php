@@ -12,6 +12,8 @@ use App\Entity\Category;
 use App\Entity\UserLikedPosts;
 use App\Form\CategoryType;
 use App\Service\ServiceWork;
+use App\Service\ServiceUser;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/admin", name="app_admin_")
@@ -37,5 +39,37 @@ class AdminController extends AbstractController
         return $this->render('admin/createCategory.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/gestion-roles", name="manage")
+     */
+    public function manageRoles(ServiceUser $serviceUser): Response
+    {
+
+        return $this->render('admin/manageRoles.html.twig',[
+            'users' => $serviceUser->getAll()
+        ]);
+    }
+
+    /**
+    * @Route("/admin/user/{id}/role", name="change_role",
+    *   methods={"POST"}
+    * )
+    */
+    public function changeRole(Request $request, ServiceUser $serviceUser, $id){
+        $user = $serviceUser->getUserById($id);        
+        
+        if($user === null){
+            return new JsonResponse("Utilisateur inexistant", 404);
+        }
+        
+        $role = json_decode($request->getContent())->role;
+
+        $user->toggleRole($role);
+        
+        $serviceUser->save($user);
+        
+        return new JsonResponse("Utilisateur mit à jour");
     }
 }

@@ -3,9 +3,9 @@
 {% block title %}Vos travaux{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-around mt-5">
+    <div class="d-flex justify-content-around mt-5 flex-wrap">
     {% for work in works %}
-        <div class="col-3 border border-1 bg-dark">
+        <div class="col-3 border border-1 bg-dark m-3">
             <p class="text-white text-center mt-3 fw-bold fs-3">{{ work.title }} - {{ work.category.name }}</p>
             <div class="col-12 d-flex justify-content-center">
                 <a href="{{ path('app_work', {'id': work.id}) }}" class="btn btn-lg btn-dark mb-3 c-red">Acceder à la ressource</a>

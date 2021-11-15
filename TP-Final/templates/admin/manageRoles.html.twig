@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion rôles{% endblock %}
+
+{% block body %}
+
+<h1 class="h3 mb-3 mt-5 text-center font-weight-normal">Gestion des rôles</h1>
+
+<div class="d-flex justify-content-center mt-5">
+    <table class="border border-1 border-white">
+        <thead class="border border-1 bg-dark">
+            <tr>
+                <th class="text-white">Nom d'utilisateur</th>
+                <th class="text-white">Prénom</th>
+                <th class="text-white">Nom</th>
+                <th class="text-white">Admin</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td> <input type="checkbox" onclick="changeRole('{{user.id}}', 'ROLE_ADMIN')" {% if user.hasRole('ROLE_ADMIN') %} checked {% endif %}> </td>
+                </tr>
+            {%  endfor %}
+        </tbody>        
+    </table>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/manageRoles.js') }}" type="text/javascript"></script>  
+    <script> var URLChangeUserRole = "{{ path('app_admin_change_role', {'id': 'id'}) }}" </script>
+{% endblock %}
