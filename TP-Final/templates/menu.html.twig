@@ -7,6 +7,7 @@
             <a class="text-white text-decoration-none m-3 menu-hover" href='{{ path('app_upload') }}'>Déposer un travail</a>
             <a class="text-white text-decoration-none m-3 menu-hover" href='{{ path('app_works') }}'>Vos travaux</a>
             <a class="text-white text-decoration-none m-3 menu-hover" href='{{ path('app_all_works') }}'>Voir tous les travaux</a>
+            <a class="text-white text-decoration-none m-3 menu-hover" href='{{ path('app_top') }}'>Top par catégories</a>
             {#% if is_granted('ROLE_ADMIN') %#}
                 <a class="text-white text-decoration-none m-3 menu-hover" href='{{ path('app_admin_create') }}'>Créer catégorie</a>
             {#% endif %#}

@@ -36,15 +36,16 @@ class WorkRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Work
+    public function findTop($value)
     {
         return $this->createQueryBuilder('w')
-            ->andWhere('w.exampleField = :val')
+            ->join('w.category', 'category')
+            ->andWhere('category.name = :val')
             ->setParameter('val', $value)
+            ->orderBy('w.likeCount', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getArrayResult()
         ;
     }
-    */
 }

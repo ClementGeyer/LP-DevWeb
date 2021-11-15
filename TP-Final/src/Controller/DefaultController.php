@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ use App\Service\ServiceWork;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/home", name="app_home")
+     * @Route("/", name="app_home")
      */
     public function index(): Response
     {
@@ -102,14 +103,18 @@ class DefaultController extends AbstractController
     public function displayAllWorks(Request $request): Response
     {
         $allWorks = $this->getDoctrine()->getRepository(Work::class)->findAll();
+        $allCategories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $user = $this->getUser();
         $likedPosts = $this->getDoctrine()->getRepository(UserLikedPosts::class)->findBy(['user' => $user]);
         $filtre = $request->query->get('filtre');
+        $category = $request->query->get('category');
 
         return $this->render('default/allWorks.html.twig', [
             'allWorks' => $allWorks,
             'likedPosts' => $likedPosts,
-            'filtre' => $filtre
+            'filtre' => $filtre,
+            'allCategories' => $allCategories,
+            'category' => $category
         ]);
     }
 
@@ -121,6 +126,38 @@ class DefaultController extends AbstractController
         $filtre = json_decode($request->getContent(), true);
 
         return $this->redirectToRoute('app_all_works', ['filtre' => $filtre]);
+    }
+
+    /**
+     * @Route("/all-works/findc", name="app_all_foundWorksByCategory")
+     */
+    public function displayFoundWorksByCategory(Request $request): Response
+    {
+        $filtre = json_decode($request->getContent(), true);
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy(['name' => $filtre]);
+
+        return $this->redirectToRoute('app_all_works', ['category' => $category]);
+    }
+
+    /**
+     * @Route("/top", name="app_top")
+     */
+    public function displayTop(): Response
+    {
+        $user = $this->getUser();
+        $likedPosts = $this->getDoctrine()->getRepository(UserLikedPosts::class)->findBy(['user' => $user]);
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $works = [];
+        foreach ($categories as $category) {
+            $work = $this->getDoctrine()->getRepository(Work::class)->findTop($category->getName());
+            array_push($work, $category);
+            array_push($works, $work);
+        }
+
+        return $this->render('default/topWorks.html.twig', [
+            'allWorks' => $works,
+            'likedPosts' => $likedPosts
+        ]);
     }
 
     /**
