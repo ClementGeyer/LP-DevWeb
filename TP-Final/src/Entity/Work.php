@@ -6,9 +6,12 @@ use App\Repository\WorkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 /**
  * @ORM\Entity(repositoryClass=WorkRepository::class)
+ * @ApiResource()
  */
 class Work
 {
@@ -30,16 +33,12 @@ class Work
     private $description;
 
     /**
-     * @ORM\Column(type="blob")
-     */
-    private $file;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $likeCount;
 
     /**
+     * @Ignore()
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="works")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -90,11 +89,6 @@ class Work
         return $this;
     }
 
-    public function getFile()
-    {
-        return $this->file;
-    }
-
     public function setLikeCount($likeCount): self
     {
         $this->likeCount = $likeCount;
@@ -122,13 +116,6 @@ class Work
     public function setCategory(Category $category)
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function setFile($file): self
-    {
-        $this->file = $file;
 
         return $this;
     }

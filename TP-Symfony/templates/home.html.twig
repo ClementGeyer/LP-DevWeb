@@ -5,3 +5,15 @@
 <img src="{{asset('images/ckt.webp')}}" style='width: 100px; height: auto'/>
 {% endblock %}
 
+{% block javascripts %}
+    <script>
+    $(document).ready(function(){
+        $.ajax({
+        url: 'http://localhost:8888/dutaflp/public/index.php/api/fournisseurs',
+        success: function (data) {
+            console.log(data)
+        }
+        })
+    })
+    </script>
+{% endblock %}
