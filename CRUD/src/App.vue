@@ -1,21 +1,17 @@
 <template>
   <div id="app">
-    <Categories></Categories>
-    <hr/>
-    <Work></Work>
+    <p>
+      <router-link to="/">Accueil</router-link>
+      <router-link to="/categories">Gérer les catégories</router-link>
+      <router-link to="/work">Gérer les travaux</router-link>
+    </p>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Categories from '@/components/Categories'
-import Work from '@/components/Work'
-
 export default {
-  name: 'App',
-  components: {
-    Categories,
-    Work
-  }
+  name: 'App'
 }
 </script>
 
