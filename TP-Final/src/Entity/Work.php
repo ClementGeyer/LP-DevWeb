@@ -38,7 +38,6 @@ class Work
     private $likeCount;
 
     /**
-     * @Ignore()
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="works")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -52,6 +51,7 @@ class Work
 
     /**
      * @ORM\OneToMany(targetEntity=UserLikedPosts::class, mappedBy="post", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $userLikedPosts;
 
