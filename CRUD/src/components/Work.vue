@@ -4,7 +4,7 @@
     <div>
       <button :disabled="addButtonShow" v-on:click="() => addWork()">Ajouter un travail</button>
       <input placeholder="Nom du travail" type="text" v-model="newLibelle"/>
-      <select>
+      <select v-on:change="(e) => changeCategory(e)">
         <option v-for="category in categories" :key="category.id">{{ category.name }}</option>
       </select>
     </div>
@@ -38,6 +38,7 @@
 <script>
 import { getWorks, postWork, deleteWork, putWork } from '../services/ServiceWork';
 import { getCategories } from '../services/ServiceCategory';
+import { getUsers } from '../services/ServiceUser';
 
 export default {
   async mounted () {
@@ -48,16 +49,19 @@ export default {
         });
         return req.data['hydra:member']
       })
+    this.users = await getUsers().then(req => { return req.data['hydra:member'] })
     await this.sendGetWorksRequest()
-    this.newCategory = this.categories[0]
+    this.newCategory = this.categories[0].id
+    this.user = this.users[0].id
   },
 
   data: function () {
     return {
       works: {},
       categories: {},
+      users: {},
       newLibelle: '',
-      newCategory: null,
+      newCategory: 0,
       modifyInput: '',
       findWork: '',
       addButtonShow: false
@@ -68,13 +72,13 @@ export default {
 
     addWork: async function() {
       this.addButtonShow = true;
-      console.log({
-        title: this.newLibelle,
-        like_count: 0,
-        category: this.newCategory
-      })
+      console.log(this.newCategory, this.user)
       await postWork({
-        title: this.newLibelle,
+        "title": this.newLibelle,
+        "likeCount": 0,
+        "description": "aaa",
+        "category": "/LP-DevWeb/TP-Final/public/index.php/api/categories/" + this.newCategory,
+        "owner": "/LP-DevWeb/TP-Final/public/index.php/api/users/" + this.user
       })
       await this.sendGetWorksRequest()
       this.newLibelle = ''
@@ -90,6 +94,14 @@ export default {
           this.getWorkCategoryName(work)
         });
         return req.data['hydra:member']
+      })
+    },
+
+    changeCategory: function(event){
+      this.categories.forEach((category) => {
+        if(category.name === event.target.value){
+          this.newCategory = category.id
+        }
       })
     },
 

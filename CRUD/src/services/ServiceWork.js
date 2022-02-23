@@ -14,7 +14,7 @@ async function getWork(id)
 
 async function postWork(data)
 {
-  return await axios.post(BASE_URL, data).catch(err => console.log(err));
+  return await axios.post(BASE_URL, data)
 }
 
 async function putWork(id, data)
