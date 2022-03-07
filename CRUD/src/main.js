@@ -1,16 +1,17 @@
 import Vue from 'vue'
-import VueSidebarMenu from 'vue-sidebar-menu'
 import VueRouter from 'vue-router'
+import VueSidebarMenu from 'vue-sidebar-menu'
 import App from './App.vue'
 
-import routes from './routes'
+import router from './router'
+
+import AxiosPlugin from 'vue-axios-cors';
 
 Vue.config.productionTip = false
 
 Vue.use(VueSidebarMenu)
 Vue.use(VueRouter)
-
-const router = new VueRouter({routes})
+Vue.use(AxiosPlugin)
 
 new Vue({
   router,

@@ -1,17 +1,15 @@
 <template>
   <div>
     <h1>Travaux</h1>
-    <div>
-      <button :disabled="addButtonShow" v-on:click="() => addWork()">Ajouter un travail</button>
+    <div id="search">
+      <button class="button" :disabled="addButtonShow" v-on:click="() => addWork()">Ajouter un travail</button>
       <input placeholder="Nom du travail" type="text" v-model="newLibelle"/>
       <select v-on:change="(e) => changeCategory(e)">
         <option v-for="category in categories" :key="category.id">{{ category.name }}</option>
       </select>
-    </div>
-    <div>
       <input placeholder="Rechercher un travail (nom)" type="text" v-model="findWork"/>
     </div>
-    <table>
+    <table class="table">
       <thead>
         <th>Libellé</th>
         <th>Catégorie</th>
@@ -53,6 +51,18 @@ export default {
     await this.sendGetWorksRequest()
     this.newCategory = this.categories[0].id
     this.user = this.users[0].id
+
+    this.$axios({url: 'http://localhost:8888/TP-Final/public/index.php/authentication_token', method: 'POST', data: {username:"clement", password:"123456"}})
+  .then(resp => {
+    const token = resp.data.token
+    const userData = atob(resp.data.token.split('.')[1]) //on récupère les données de l'utilisateur, par défaut, login, rôles
+    localStorage.setItem('user', userData) // store the user in localstorage
+    localStorage.setItem('usertoken', token) // store the token in localStorage
+  })
+  .catch((e) => {
+    console.log(e)
+    localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+  })
   },
 
   data: function () {

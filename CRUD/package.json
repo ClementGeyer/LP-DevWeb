@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
+    "vue-axios-cors": "^1.0.1",
     "vue-devtools": "^5.1.4",
     "vue-router": "^3.5.3",
     "vue-sidebar-menu": "^4.8.1"

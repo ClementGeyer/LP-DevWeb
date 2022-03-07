@@ -4,47 +4,27 @@ const BASE_URL = 'http://localhost:8888/LP-DevWeb/TP-Final/public/index.php/api/
 
 async function getWorks()
 {
-  return await axios.get(BASE_URL, {
-    headers: {
-      'Authorization': `Bearer ` + localStorage.getItem('usertoken')
-    }
-  });
+  return await axios.get(BASE_URL);
 }
 
 async function getWork(id)
 {
-  return await axios.get(BASE_URL+'/'+id, {
-    headers: {
-      'Authorization': `Bearer ` + localStorage.getItem('usertoken')
-    }
-  });
+  return await axios.get(BASE_URL+'/'+id);
 }
 
 async function postWork(data)
 {
-  return await axios.post(BASE_URL, data, {
-    headers: {
-      'Authorization': `Bearer ` + localStorage.getItem('usertoken')
-    }
-  })
+  return await axios.post(BASE_URL, data)
 }
 
 async function putWork(id, data)
 {
-  return await axios.put(BASE_URL+'/'+id, data, {
-    headers: {
-      'Authorization': `Bearer ` + localStorage.getItem('usertoken')
-    }
-  })
+  return await axios.put(BASE_URL+'/'+id, data)
 }
 
 async function deleteWork(id)
 {
-  return await axios.delete(BASE_URL+'/'+id, {
-    headers: {
-      'Authorization': `Bearer ` + localStorage.getItem('usertoken')
-    }
-  });
+  return await axios.delete(BASE_URL+'/'+id);
 }
 
 export {getWorks, getWork, postWork, deleteWork, putWork }

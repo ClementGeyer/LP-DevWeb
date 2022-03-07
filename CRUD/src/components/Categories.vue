@@ -1,14 +1,12 @@
 <template>
   <div>
     <h1>Catégories</h1>
-    <div>
-      <button :disabled="addButtonShow" v-on:click="() => addCategorie()">Ajouter une catégorie</button>
+    <div id="search">
+      <button class="button" :disabled="addButtonShow" v-bind:class="{ disabled: addButtonShow }" v-on:click="() => addCategorie()">Ajouter une catégorie</button>
       <input placeholder="Nom de la catégorie" type="text" v-model="newLibelle"/>
-    </div>
-    <div>
       <input placeholder="Rechercher une catégorie (nom)" type="text" v-model="findCategory"/>
     </div>
-    <table>
+    <table class="table">
       <thead>
         <th>Libellé</th>
         <th>Modifier</th>
