@@ -52,6 +52,16 @@ export default {
 .table{
   margin: 20px auto auto auto;
 }
+.table thead{
+  background-color: #555555;
+  color: white;
+}
+.table p{
+  margin: 5px 70px;
+}
+.table tr:nth-child(2n){
+  background-color: rgb(135, 235, 135);
+}
 .button{
   background-color: #555555;
   border: none;
@@ -62,5 +72,9 @@ export default {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+}
+.small{
+  font-size: 12px;
+  margin: 2px 10px;
 }
 </style>

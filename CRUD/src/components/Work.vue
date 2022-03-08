@@ -24,8 +24,8 @@
               <input v-show="work.showModify" type="text" v-model="modifyInput"/>
             </td>
             <td>{{ work.categoryName }}</td>
-            <td><button v-on:click="() => work.showModify ? sendModify(work) : showModify(work)">{{ work.showModify ? "Confirmer" : "Modifier" }}</button></td>
-            <td><button v-on:click="() => removeWork(work)">Supprimer</button></td>
+            <td><button class="button small" v-on:click="() => work.showModify ? sendModify(work) : showModify(work)">{{ work.showModify ? "Confirmer" : "Modifier" }}</button></td>
+            <td><button class="button small" v-on:click="() => removeWork(work)">Supprimer</button></td>
           </tr>
         </template>
       </tbody>
